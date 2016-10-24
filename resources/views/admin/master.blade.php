@@ -43,7 +43,7 @@
 					</div>
 					<div class="col-md-4">
 						<div class="to-front">
-
+                                                    <a href="{{url('/')}}" target="_blank">Visit Site</a>
 						</div>
 					</div>
 					<div class="col-md-4">
