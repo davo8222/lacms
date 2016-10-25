@@ -54,7 +54,7 @@
 		</div>
 	</div>
 	@if($post->post_type!=='page')
-	<div class="modal fade" id="post_media" tabindex="-1" role="dialog" aria-labelledby="post_media">
+	<div class="modal" id="post_media" tabindex="-1" role="dialog" aria-labelledby="post_media" aria-hidden="false">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">

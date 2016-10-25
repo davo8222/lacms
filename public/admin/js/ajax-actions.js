@@ -28,7 +28,6 @@ $('document').ready(function () {
 		if(ids.length<=0){
 			alert('there is no items selected');
 		}else{
-			console.log(ids);
 			$.ajax({
 				type: 'delete',
 				url: '/admin/posts/multidelete',
@@ -40,7 +39,12 @@ $('document').ready(function () {
 						setTimeout(function () {
 							$('.alert').remove();
 						}, 2000);		
-					console.log(data);
+						$(target).each(function(){
+							var item=$(this).attr('data-item');
+							if($.inArray(item, ids)!=-1){
+							$(this).parent('tr').remove();
+							}
+						});
 				}
 				},
 				error: function (data) {
@@ -48,6 +52,7 @@ $('document').ready(function () {
 					console.log(errors);
 				}
 			});
+			
 		}
 	});
 	/**

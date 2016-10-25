@@ -86,11 +86,11 @@
         <!-- JS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script src="{{'/js/bootstrap.min.js'}}"></script> 
-        <script src="{{'/admin/plugins/summernote/summernote.js'}}"></script>\
+        <script src="{{'/admin/plugins/summernote/summernote.js'}}"></script>
         <script src="{{'/admin/js/jquery-sortable.js'}}"></script>
         @yield('scripts')
         <script src="{{'/admin/js/ajax-actions.js'}}"></script>
-
+		
         <script src="{{'/admin/js/script.js'}}"></script>
 
     </body>

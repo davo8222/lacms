@@ -98,7 +98,9 @@ $('document').ready(function () {
 
 
     $('#media_lib_modal').one('click', function () {
+		$('#post_media').modal('show');
         get_media();
+		
     });
 
     $('.media-list').on('click', 'li', function () {
