@@ -12,10 +12,10 @@
 		<div class="container">
 			<div class="info-container">
 				@if (Session::has('message'))
-					<div class="alert alert-info">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></button>
-						{{ Session::get('message') }}
-					</div>
+				<div class="alert alert-info">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></button>
+					{{ Session::get('message') }}
+				</div>
 				@endif
 				<b>Total records {{$posts->total()}}</b>
 				<a href="{{'posts/new'}}" class="btn btn-cms btn-default pull-right"><span class="ti-plus"></span> Add New</a>
@@ -23,20 +23,22 @@
 			<table class="table table-striped table-bordered">
 				<thead>
 					<tr>
-						
+
 						<td>#</td>
 						<td>Title</td>
 						<td>Slug</td>
 						<td>Author</td>
+						@if($records=='posts')
 						<td>Category</td>
 						<td>Thumbnail</td>
+						@endif
 						<td>Date</td>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($posts as $post)
 					<tr>
-						<td class="post-checks"><input type="checkbox" name="select_{{$post->id}}" class="post-select"></td>
+						<td class="post-checks" data-item="{{$post->id}}"><input type="checkbox" name="multiremove[]" class="post-select" value="{{$post->id}}"></td>
 						<td>
 							<h4><strong>{{$post->title}}</strong></h4>
 							<ul class="list-inline post-actions">
@@ -51,14 +53,20 @@
 						</td>
 						<td>{{$post->slug}}</td>
 						<td>{{$post->user->name}}</td>
+						@if($records=='posts')
 						<td>
-							{{--$post->category--}}
+							@if($post->category)
+							@foreach($post->category as $category)
+							{{$category->name}}
+							@endforeach
+							@endif
 						</td>
 						<td>
 							@if($post->post_image)
-								<img src="{{$post->post_image}}" alt="post-thumb" class="post-list-thumnail">
+							<img src="{{$post->post_image}}" alt="post-thumb" class="post-list-thumnail">
 							@endif
 						</td>
+						@endif
 						<td>{{$post->updated_at}}</td>
 					</tr>
 
@@ -70,12 +78,15 @@
 						<td>Title</td>
 						<td>Slug</td>
 						<td>Author</td>
+						@if($records=='posts')
 						<td>Category</td>
 						<td>Thumbnail</td>
+						@endif
 						<td>Date</td>
 					</tr>
 				</tfoot>
 			</table>
+			<a href="#" id="multiremove" class="error" data-token="{{ csrf_token() }}">Delete</a>
 			{{$posts->render()}}
 		</div>
 	</div>

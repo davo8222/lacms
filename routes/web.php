@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function() {
 	Route::get('posts/new', 'PostsController@post_new');
 	Route::post('posts/new', ['as'=>'postcreate', 'uses'=>'PostsController@post_store']);
 	Route::delete('posts/{post}/delete', 'PostsController@post_delete');
+	Route::delete('posts/multidelete', 'PostsController@multidelete');
 	
 	/*pages*/
 	Route::get('pages', ['as'=>'allpages', 'uses'=>'PostsController@page_all']);

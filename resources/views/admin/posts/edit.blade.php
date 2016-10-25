@@ -28,7 +28,7 @@
 							@foreach($categories as $category)
 							<li class="checkbox">
 								<label>
-								<input type="checkbox" name="category_id[]" value="{{$category->id}}" @if($category->id==$post->category_id) checked="checked" @endif>
+								<input type="checkbox" name="category_id[]" value="{{$category->id}}" @if($post->category->contains($category->id))) checked="checked" @endif>
 								{{$category->name}}
 								</label>
 							</li>

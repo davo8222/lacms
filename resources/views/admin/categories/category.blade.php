@@ -34,7 +34,7 @@
 					<tbody>
 						@foreach($categories as $category)
 						<tr>
-							<td class="post-checks"><input type="checkbox" name="select_{{$category->id}}" class="category-select"></td>
+							<td class="post-checks"><input type="checkbox" name="multiremove[]" value="{{$category->id}}" class="category-select"></td>
 							<td>
 								<p class="category-name">{{$category->name}}</p>
 								<ul class="list-inline category-actions">
@@ -47,7 +47,7 @@
 								</ul>
 							</td>
 							<td><p class="category-slug">{{$category->slug}}</p></td>
-							<td>{{--$category->post->count()--}}</td>
+							<td>{{$category->post->count()}}</td>
 						</tr>
 						<tr class="category-edit-row" id="edit_{{$category->id}}">
 							<td colspan="4">

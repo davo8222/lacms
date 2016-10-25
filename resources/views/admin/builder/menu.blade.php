@@ -109,5 +109,5 @@
 </div>
 @endsection
 @section('scripts')
-<script src="{{'/admin/js/jquery-sortable.js'}}"></script>
+
 @endsection

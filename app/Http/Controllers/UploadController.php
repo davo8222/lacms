@@ -33,9 +33,7 @@ class UploadController extends Controller {
 	public function store(Storage $storage, Request $request) {
 		if ($request->isXmlHttpRequest()) {
 			$image = $request->file('image');
-			$timestamp = $this->getFormattedTimestamp();
-			$savedImageName = $this->getSavedImageName($timestamp, $image);
-
+                        $savedImageName= $image->getClientOriginalName();
 			$imageUploaded = $this->uploadImage($image, $savedImageName, $storage);
 
 			if ($imageUploaded) {
@@ -60,22 +58,6 @@ class UploadController extends Controller {
 		return $storage->disk('image')->put($imageFullName, $filesystem->get($image));
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getFormattedTimestamp() {
-		return str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
-	}
-
-	/**
-	 * @param $timestamp
-	 * @param $image
-	 * @return string
-	 */
-	protected function getSavedImageName($timestamp, $image) {
-		return $timestamp . '-' . $image->getClientOriginalName();
-	}
-	
 	public function delete(Request $request, $media) {
 		if($request->ajax()){
 			$file=  public_path().'/media/'.$media;
