@@ -13,8 +13,8 @@ class ComposerStaticInit66ebc0f24ae91cf7c6f5a390838afd58
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
-        'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
@@ -33,6 +33,10 @@ class ComposerStaticInit66ebc0f24ae91cf7c6f5a390838afd58
         'W' => 
         array (
             'Webmozart\\Assert\\' => 17,
+        ),
+        'U' => 
+        array (
+            'Unisharp\\Laravelfilemanager\\' => 28,
         ),
         'S' => 
         array (
@@ -118,6 +122,10 @@ class ComposerStaticInit66ebc0f24ae91cf7c6f5a390838afd58
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Unisharp\\Laravelfilemanager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src',
         ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
@@ -3282,6 +3290,22 @@ class ComposerStaticInit66ebc0f24ae91cf7c6f5a390838afd58
         'Symfony\\Polyfill\\Util\\TestListener' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListener.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'Unisharp\\Laravelfilemanager\\Events\\FolderWasRenamed' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/Events/FolderWasRenamed.php',
+        'Unisharp\\Laravelfilemanager\\Events\\ImageWasDeleted' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/Events/ImageWasDeleted.php',
+        'Unisharp\\Laravelfilemanager\\Events\\ImageWasRenamed' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/Events/ImageWasRenamed.php',
+        'Unisharp\\Laravelfilemanager\\Events\\ImageWasUploaded' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/Events/ImageWasUploaded.php',
+        'Unisharp\\Laravelfilemanager\\LaravelFilemanagerServiceProvider' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/LaravelFilemanagerServiceProvider.php',
+        'Unisharp\\Laravelfilemanager\\controllers\\Controller' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/controllers/Controller.php',
+        'Unisharp\\Laravelfilemanager\\controllers\\CropController' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/controllers/CropController.php',
+        'Unisharp\\Laravelfilemanager\\controllers\\DeleteController' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/controllers/DeleteController.php',
+        'Unisharp\\Laravelfilemanager\\controllers\\DownloadController' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/controllers/DownloadController.php',
+        'Unisharp\\Laravelfilemanager\\controllers\\FolderController' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/controllers/FolderController.php',
+        'Unisharp\\Laravelfilemanager\\controllers\\ItemsController' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/controllers/ItemsController.php',
+        'Unisharp\\Laravelfilemanager\\controllers\\LfmController' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/controllers/LfmController.php',
+        'Unisharp\\Laravelfilemanager\\controllers\\RenameController' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/controllers/RenameController.php',
+        'Unisharp\\Laravelfilemanager\\controllers\\ResizeController' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/controllers/ResizeController.php',
+        'Unisharp\\Laravelfilemanager\\controllers\\UploadController' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/controllers/UploadController.php',
+        'Unisharp\\Laravelfilemanager\\middleware\\MultiUser' => __DIR__ . '/..' . '/unisharp/laravel-filemanager/src/middleware/MultiUser.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',

@@ -13,7 +13,7 @@ function get_media() {
         success: function (data) {
             if (data['status'] === 'success') {
                 $.each(data['data'], function (key, val) {
-                    $('#media_list').append('<li class="media-item"><img src="/media/' + val + '" alt="' + key + '" data-name="' + key + '"></li>');
+                    $('#media_list').append('<li class="media-item"><img src="/media/images/' + val + '" alt="' + key + '" data-name="' + key + '"></li>');
                 })
             }
         }
@@ -53,22 +53,22 @@ $('document').ready(function () {
         paramName: "image", // The name that will be used to transfer the file
         maxFilesize: 2, // MB
         dictDefaultMessage: "Drop File here or Click to upload Image",
-        thumbnailWidth: "150",
-        thumbnailHeight: "150",
+     //   thumbnailWidth: "150",
+      //  thumbnailHeight: "150",
         accept: function (file, done) {
             done()
         },
         init: function () {
             this.on("complete", function (file) {
                 if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-                    $('#post_media').find('.nav a[href="#library"]').tab('show');
+                    $('#media_lib').find('.nav a[href="#library"]').tab('show');
                     $('#media_list').empty();
                     get_media();
                 }
             });
         }
     };
-
+/*
     function uploadSuccess(data, file) {
         var messageContainer = $('.dz-success-mark'),
                 message = $('<p></p>', {
@@ -95,7 +95,7 @@ $('document').ready(function () {
         }
     }
 
-
+*/
 
     $('#media_lib_modal').one('click', function () {
 		$('#post_media').modal('show');

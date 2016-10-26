@@ -16,7 +16,7 @@ class UploadController extends Controller {
 	}
 
 	public function get_all_media() {
-		$files = File::allFiles(public_path() . '/media');
+		$files = File::allFiles(public_path() . '/media/images');
 		$data = array();
 		foreach ($files as $file) {
 			$data[$file->getFileName()] = str_replace('\\', '/', $file->getRelativePathName());
@@ -33,12 +33,23 @@ class UploadController extends Controller {
 	public function store(Storage $storage, Request $request) {
 		if ($request->isXmlHttpRequest()) {
 			$image = $request->file('image');
-                        $savedImageName= $image->getClientOriginalName();
-			$imageUploaded = $this->uploadImage($image, $savedImageName, $storage);
+			$slug_inc=1;
+            $image_original_name= $image->getClientOriginalName();
+			$image_name=  pathinfo($image_original_name, PATHINFO_FILENAME);
+			$image_ext=  pathinfo($image_original_name, PATHINFO_EXTENSION);
+			if(FILE::exists(public_path().'/media/images/'.$image_original_name)){
+				$image_original_name=$image_name.'-'.$slug_inc.'.'.$image_ext; 
+				do{
+					$image_original_name=$image_name.'-'.$slug_inc.'.'.$image_ext; 
+					$check_iamge=FILE::exists(public_path().'/media/images/'.$image_original_name);
+					$slug_inc++;
+				}while($check_iamge);
+			}
+			$imageUploaded = $this->uploadImage($image, $image_original_name, $storage);
 
 			if ($imageUploaded) {
 				$data = [
-					'original_path' => asset('/media/' . $savedImageName)
+					'original_path' => asset('/media/images/' . $image_original_name)
 				];
 				return json_encode($data, JSON_UNESCAPED_SLASHES);
 			}
@@ -60,7 +71,7 @@ class UploadController extends Controller {
 
 	public function delete(Request $request, $media) {
 		if($request->ajax()){
-			$file=  public_path().'/media/'.$media;
+			$file=  public_path().'/media/images/'.$media;
 			$out=File::delete($file);
 		}
 		return response(['data' => $out,  'status' => 'success']);

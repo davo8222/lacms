@@ -2,6 +2,30 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/lacms/config/filesystems.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/routes/web.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/app/Http/Controllers/PostsController.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/routes/console.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/public/admin/js/media_uploader.js</file>
+            <file>file:/C:/xampp/htdocs/lacms/app/Http/Controllers/CategoryController.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/composer.json</file>
+            <file>file:/C:/xampp/htdocs/lacms/resources/views/admin/posts/posts.blade.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/config/lfm.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/app/Post.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/app/Category.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/config/app.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/resources/views/admin/posts/create.blade.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/resources/views/admin/categories/category.blade.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/resources/views/admin/master.blade.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/storage/logs/laravel.log</file>
+            <file>file:/C:/xampp/htdocs/lacms/resources/views/admin/posts/edit.blade.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/public/admin/js/text_editor.js</file>
+            <file>file:/C:/xampp/htdocs/lacms/public/admin/js/script.js</file>
+            <file>file:/C:/xampp/htdocs/lacms/routes/api.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/app/Http/Controllers/UploadController.php</file>
+            <file>file:/C:/xampp/htdocs/lacms/public/admin/js/ajax-actions.js</file>
+            <file>file:/C:/xampp/htdocs/lacms/resources/views/admin/builder/menu.blade.php</file>
+        </group>
     </open-files>
 </project-private>

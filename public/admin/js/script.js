@@ -1,9 +1,5 @@
 var $=jQuery.noConflict();
 $('document').ready(function(){
-    $('#la_editor').summernote({
-		minHeight: 350,
-	});
-	
 	$('#post_type').change(function(){
 		var post_type=$(this).val();
 		if(post_type==='page'){

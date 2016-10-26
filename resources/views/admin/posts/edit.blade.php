@@ -72,6 +72,7 @@
 </div>
 @endsection
 @section('scripts')
+	<script src="{{'/admin/js/text_editor.js'}}"></script>
 	<script src="{{'/admin/plugins/dropzone/min/dropzone.min.js'}}"></script>
 	<script src="{{'/admin/js/media_uploader.js'}}"></script>
 @endsection

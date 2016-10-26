@@ -19,10 +19,7 @@
         <link rel="stylesheet" href="{{'/admin/css/themify-icons/ie7/ie7.css'}}">
         <!--<![endif]-->
         <link href="{{'/admin/css/fontawesome/css/font-awesome.min.css'}}" rel="stylesheet">
-        <!--summernote-->
-        <link rel="stylesheet" href="{{'/admin/plugins/summernote/summernote.css'}}">
 
-        <!--endsummernote-->
         <link rel="stylesheet" href="{{'/admin/css/style.css'}}">
 
         <!-- google fonts-->
@@ -86,7 +83,7 @@
         <!-- JS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script src="{{'/js/bootstrap.min.js'}}"></script> 
-        <script src="{{'/admin/plugins/summernote/summernote.js'}}"></script>
+        <script src="{{'/admin/plugins/tinymce/tinymce.min.js'}}"></script>
         <script src="{{'/admin/js/jquery-sortable.js'}}"></script>
         @yield('scripts')
         <script src="{{'/admin/js/ajax-actions.js'}}"></script>

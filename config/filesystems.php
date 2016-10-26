@@ -54,10 +54,14 @@ return [
         ],
 		'image' => [
             'driver' => 'local',
-            'root'   => public_path().'/media'
+            'root'   => public_path().'/media/images'
         ],
 
-        's3' => [
+        'file' => [
+            'driver' => 'local',
+            'root'   => public_path().'/media/files'
+        ],
+		's3' => [
             'driver' => 's3',
             'key'    => env('AWS_KEY'),
 			'secret' => env('AWS_SECRET'),
