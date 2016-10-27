@@ -15,7 +15,7 @@ return [
     'middlewares'           => ['web'],
 
     // Add prefix for routes
-    'prefix'           => 'laravel-filemanager',
+    'prefix'           => 'filemanager',
 
     // Allow multi_user mode or not.
     // If true, laravel-filemanager create private folders for each signed-in user.

@@ -18,6 +18,9 @@
 					<input type="text" class="form-control" name="title">
 					<label>Content</label>
 					<textarea name="content" class="form-control" id="la_editor"></textarea> 
+					<div id="page_layout">
+						
+					</div>
 				</div>
 				<div class="col-md-3 new-post-right">
 					<div class="post-type">
@@ -46,9 +49,11 @@
 					</div>
 					<div class="post_image" id="post_image_wrap">
 						<h3>Post Main Image</h3>
-						<div class="preview" id="post_img_prev"></div>
-						<input type="hidden" name="post_image" id="" value="">
-						<a href="#" data-toggle="modal" data-target="#post_media" id="media_lib_modal"><span class="ti ti-plus"></span>Add Image</a>
+						<div class="preview" id="post_img_prev">
+							<img src="" class="img-responsive" id="post_thumb_holder">
+						</div>
+						<input type="hidden" name="post_image" id="post_thumb_val" value="">
+						<a href="#" id="post_thumb" data-input="post_thumb_val" data-preview="post_thumb_holder"><span class="ti ti-plus"></span>Add Image</a>
 						
 					</div>
 					<input type="submit" class="btn btn-success btn-lg" value="Publish">
@@ -56,24 +61,9 @@
 			</form>
 		</div>
 	</div>
-	<div class="modal fade" id="post_media" tabindex="-1" role="dialog" aria-labelledby="post_media">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-body">
-					@include('admin.upload._mediaFrame')
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-defult pull-right" id="cancel_media">Cancel</button>
-					<button class="btn btn-primary pull-right disabled" id="insert_media">Insert</button>
-					<button class="btn btn-danger pull-right disabled" id="delete_media" data-token="{{ csrf_token() }}">Delete</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 @endsection
 @section('scripts')
 	<script src="{{'/admin/js/text_editor.js'}}"></script>
-	<script src="{{'/admin/plugins/dropzone/min/dropzone.min.js'}}"></script>
-	<script src="{{'/admin/js/media_uploader.js'}}"></script>
+	<script src="{{'/vendor/laravel-filemanager/js/lfm.js'}}"></script>
+	<script type="text/javascript"> jQuery('#post_thumb').filemanager('image');</script>
 @endsection

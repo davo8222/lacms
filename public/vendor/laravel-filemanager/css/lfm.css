@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+	overflow: hidden;
 }
 
 .img-row {
@@ -56,3 +57,19 @@ html, body {
 .hidden {
     display: none;
 }
+.img-row{height: 200px;}
+#content{
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+#content::-webkit-scrollbar{width: 5px;}
+#content::-webkit-scrollbar-track{background: rgba(0, 0, 0, 0.1);}
+#content::-webkit-scrollbar-thumb{ background: #EB7260; border-radius: 20px;}
+.navbar-default{
+	background: #373b44;
+	color: #fff;
+}
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
+	color: #fff;
+}
+#right-nav{border:none;}

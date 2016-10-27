@@ -6,28 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Meta extends Model {
 	protected $meta;
-	protected $fillable = ['key', 'value'];
+	protected $fillable = ['item_id', 'key', 'value'];
 	
-	public function add_meda($key, $value=null) {
+	public function add_meda($item_id, $key, $value=null) {
 		$meta=  $this;
-		$key_ex=$meta->where('key', $key)->get();
-		if($key_ex) return false;
+		$check_meta=$meta->where(['item_id', '=', $item_id], ['key', '=', $key])->get();
+		if($check_meta) return false;
 		$meta->$key=$key;
 		$meta->$value=$value;
 		$meta->save();
 	}
-	public function update_meda($key, $value) {
+	public function update_meda($item_id, $key, $value) {
 		$meta=  $this;
-		$key_ex=$meta->where('key', $key)->first();
-		if(!$key_ex) return false;
-		$key_ex->$value=$value;
-		$key_ex->update();
+		$current_meta=$meta->where(['item_id', '=', $item_id], ['key', '=', $key])->first();
+		if(!$current_meta) return false;
+		$current_meta->$value=$value;
+		$current_meta->update();
 	}
-	public function get_meta($key) {
+	public function get_meta($item_id, $key) {
 		$meta=  $this;
-		$key_ex=$meta->where('key', $key)->first();
-		if(!$key_ex) return 'none';
-		return $key_ex->value;
+		$current_meta=$meta->where(['item_id', '=', $item_id], ['key', '=', $key])->first();
+		if(!$current_meta) return false;
+		return $current_meta->value;
 	}
 	
 

@@ -72,6 +72,13 @@ $('document').ready(function(){
 		$(e.delegateTarget).next().sortable(method);
 	});
 	
+	/****post thumnail****/
+	$('#post_img_prev').on('click', 'span', function () {
+        $(this).parents('#post_image_wrap').find('input').val('');
+        $(this).parents('#post_image_wrap').find('a').html('<span class="ti ti-plus"></span>Add Image');
+        $('#post_img_prev img').attr('src', '');
+		$(this).remove();
+    });
 	
 	
 })

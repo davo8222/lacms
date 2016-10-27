@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\DB;
 class Helpers{
 	
 	public function show_menu() {
-		$meta=new Meta();
-		$menu_id=  $meta->get_meta('primary_nav');
+		$options=new Option();
+		$menu_id=  $options->get_option('primary_nav');
 	//	$menu=Builder::findOrFail($menu_id);
 		
 		$menu=DB::table('builders')->where('id', $menu_id)->get();

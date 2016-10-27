@@ -1,6 +1,6 @@
 <div class="dash-navigation">
 	<div class="nav-head">
-		<h1><a href="{{url('/admin/dashboard')}}">Dashboard</a></h1>
+		<h1><a href="{{url('/dashboard')}}">Dashboard</a></h1>
 	</div>
 	<ul class="nav-vertical">
 		<li><a href="{{url('/admin/posts')}}"><span class="ti-agenda"></span>Posts</a></li>

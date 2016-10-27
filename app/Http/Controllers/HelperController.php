@@ -9,6 +9,7 @@ use App\Category;
 use App\Builder;
 use Illuminate\Support\Facades\Config;
 use App\Meta;
+use App\Option;
 
 class HelperController extends Controller {
 
@@ -25,7 +26,7 @@ class HelperController extends Controller {
         $menus = Builder::where('type', 'menu')->get();
         $pages = Post::where('post_type', 'page')->get();
         $categories = Category::all();
-        $primary = Meta::where('key', 'primary_nav')->first();
+        $primary = Option::where('key', 'primary_nav')->first();
         return view('admin.builder.menu', ['menus' => $menus, 'pages' => $pages, 'categories' => $categories, 'primary_nav' => $primary]);
     }
 
@@ -40,12 +41,10 @@ class HelperController extends Controller {
                 $cur_menu = Builder::findOrFail($data['current_id']);
                 $out = $cur_menu->update($menu);
                 if (isset($data['as_primary'])) {
-                    $meta = Meta::where('key', 'primary_nav')->first();
-                    $meta->value = $cur_menu->id;
-                    $meta->update();
-                } else {
-                    Config::set(['configuarions' => ['primary_nav' => '5']]);
-                }
+                    $primary_menu = Option::where('key', 'primary_nav')->first();
+                    $primary_menu->value = $cur_menu->id;
+                    $primary_menu->update();
+                } 
             } else {
                 $out = Builder::create($menu);
             }
@@ -62,7 +61,7 @@ class HelperController extends Controller {
     public function current_menu(Request $request, $menu_id) {
         if ($request->ajax()) {
             $current_menu = Builder::findOrFail($menu_id);
-            $primary = Meta::where('key', 'primary_nav')->first();
+            $primary = Option::where('key', 'primary_nav')->first();
             $primary_id = $primary->value;
             /*
               $menus=Builder::where('type', 'menu')->get();
