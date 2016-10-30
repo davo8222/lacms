@@ -95,6 +95,52 @@ $('document').ready(function () {
 			}
 		});
 	});
+	
+	/**
+	 * categories multiremove
+	 * 
+	 */
+	$('#multiremove_cat').on('click', function (e) {
+		e.preventDefault();
+		var token = $(this).data('token');
+		var ids=[];
+		var target=$(this).prev('table').find('td.post-checks');
+		$(target).each(function(){
+			var item_id=$(this).find('.category-select').val();
+			if($(this).find('.category-select').prop("checked")){
+				ids.push(item_id);
+			}
+		});
+		if(ids.length<=0){
+			alert('there is no items selected');
+		}else{
+			$.ajax({
+				type: 'delete',
+				url: '/admin/categories/multidelete',
+				data: {data: ids, _token: token},
+				dataType: 'json',
+				success: function (data) {
+					if (data['status'] == 'success') {
+						$('.info-container').prepend('<div class="alert alert-info">Records have been deleted</div>');
+						setTimeout(function () {
+							$('.alert').remove();
+						}, 2000);		
+						$(target).each(function(){
+							var item=$(this).attr('data-item');
+							if($.inArray(item, ids)!=-1){
+							$(this).parent('tr').remove();
+							}
+						});
+				}
+				},
+				error: function (data) {
+					var errors = data.responseJSON;
+					console.log(errors);
+				}
+			});
+			
+		}
+	});
 
 
 	/****************menus**************/

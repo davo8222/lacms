@@ -5,7 +5,51 @@ use Illuminate\Http\Request;
 use App\Builder;
 use App\Meta;
 use Illuminate\Support\Facades\DB;
+
 class Helpers{
+	
+	public  function add_meta($item_id, $key, $value=null) {
+		$meta=  new Meta();
+		$new_meta=  array();
+		$check_meta=$meta->where('item_id', $item_id)->where('key',$key)->first();
+		if($check_meta){
+			$this->update_meda($item_id, $key, $value);
+		}else{
+			$new_meta['item_id']=$item_id;
+			$new_meta['key']=$key;
+			$new_meta['value']=$value;
+			$meta->create($new_meta);
+		}	
+		return FALSE;
+	}
+	public function update_meta($item_id, $key, $value) {
+		$meta=  new Meta();
+		$current_meta=$meta->where('item_id', $item_id)->where('key',$key)->first();
+		//if(!$current_meta) return false;
+		$current_meta->value=$value;
+		$current_meta->update();
+	}
+	public function get_meta($item_id, $key) {
+		$meta=  new Meta();
+		$current_meta=$meta->where('item_id', $item_id)->where('key',$key)->first();
+		if($current_meta){
+			return $current_meta->value;
+		}else{
+			$current_meta=null;
+		}
+		
+	}
+	
+	public function delete_meta($item_id, $key) {
+		$meta=  new Meta();
+		$current_meta=$meta->where('item_id', $item_id)->where('key',$key)->first();
+		if($current_meta){
+			return $current_meta->value;
+		}else{
+			$current_meta=null;
+		}
+		
+	}
 	
 	public function show_menu() {
 		$options=new Option();

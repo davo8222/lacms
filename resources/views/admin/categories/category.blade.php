@@ -34,7 +34,7 @@
 					<tbody>
 						@foreach($categories as $category)
 						<tr>
-							<td class="post-checks"><input type="checkbox" name="multiremove[]" value="{{$category->id}}" class="category-select"></td>
+							<td class="post-checks" data-item="{{$category->id}}"><input type="checkbox" name="multiremove_cat[]" value="{{$category->id}}" class="category-select"></td>
 							<td>
 								<p class="category-name">{{$category->name}}</p>
 								<ul class="list-inline category-actions">
@@ -82,6 +82,7 @@
 						</tr>
 					</tfoot>
 				</table>
+				<a href="#" id="multiremove_cat" class="error" data-token="{{ csrf_token() }}">Delete</a>
 				{{$categories->render()}}
 			</div>
 			<div class="col-md-6 category-create">

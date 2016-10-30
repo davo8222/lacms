@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\Category;
+//use App\Meta;
+
+use App\Helpers;
 
 class PostsController extends Controller {
 
@@ -27,7 +30,8 @@ class PostsController extends Controller {
      */
     public function post_new() {
         $categories = Category::all();
-        return view('admin.posts.create', ['categories' => $categories]);
+		$type=$_GET['type'];
+        return view('admin.posts.create', ['categories' => $categories, 'post_type'=>$type]);
     }
 
     /**
@@ -64,7 +68,10 @@ class PostsController extends Controller {
         if (!$out) {
             return redirect()->route('postcreate')->withErrors('message', 'Post could not be saved. try again please!');
         } else {
-            if ($post_data['post_type'] == 'page') {      
+            if ($post_data['post_type'] == 'page') { 
+			$meta=new Helpers();
+			$layout_type=!empty($request->input('sidebar_pos')) ? $request->input('sidebar_pos') : 'full';
+			$meta->add_meta($out->id, 'page_layout', $layout_type);
                 return redirect()->route('allpages')->with('message', 'Page susccessfully added');
             } else {
 				if($request->input('category_id')){
@@ -85,7 +92,9 @@ class PostsController extends Controller {
     public function post_edit($post_id) {
         $post = Post::findorFail($post_id);
         $categories = Category::all();
-        return view('admin.posts.edit', ['post' => $post, 'categories' => $categories]);
+		$meta=new Helpers();
+		$layout=$meta->get_meta($post_id, 'page_layout');
+        return view('admin.posts.edit', ['post' => $post, 'categories' => $categories, 'layout'=>$layout]);
     }
 
     /**
@@ -125,9 +134,17 @@ class PostsController extends Controller {
 			}
 			
         }
-       
-        $post->update();
-
+		if($post->post_type=='page'){
+			$meta=new Helpers();
+			$layout_type=!empty($request->input('sidebar_pos')) ? $request->input('sidebar_pos') : 'full';
+			$layout=$meta->get_meta($post->id, 'page_layout');
+			if($layout!==null){
+				$out=$meta->update_meta($post->id, 'page_layout', $layout_type);
+			}else{
+				$out=$meta->add_meta($post->id, 'page_layout', $layout_type);
+			}
+		}
+		$post->update();
         if ($request->input('post_type') == 'page') {
             return redirect()->route('allpages')->with('message', 'Page susccessfully updated');
         } else {

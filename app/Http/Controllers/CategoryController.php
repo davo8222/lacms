@@ -85,5 +85,17 @@ class CategoryController extends Controller {
 		$category->delete();
 		return redirect()->route('allcats')->with('message', 'Category susccessfully deleted');
 	}
+	
+	/**
+	 * multiremove
+	 * 
+	 */
+	public function multidelete(Request $request) {
+		if($request->ajax()){
+			$ids=$request->input('data');
+			$out=Category::whereIn('id', $ids)->delete(); 
+		}
+		return response(['data' => $out, 'status' => 'success']);
+	}
 
 }

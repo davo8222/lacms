@@ -1,3 +1,5 @@
+
+
 @extends('admin.master')
 
 @section('title', 'Edit Post')
@@ -19,6 +21,35 @@
 					<input type="text" class="form-control" name="title"  value="{{$post->title}}">
 					<label for="content">Content</label>
 					<textarea name="content" class="form-control" id="la_editor">{{$post->content}}</textarea> 
+					@if($post->post_type!=='post')
+					<div id="page_layout" class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">Page Layout</h4>
+						</div>
+						<div class="panel-body">
+							<ul id="page_sidebar_position" class="page-layout-options list-unstyled list-inline">
+								<li>
+									<input id="sidebar_pos"  name="sidebar_pos" type="radio" value="full" @if($layout=='full') checked="checked" @endif />
+									<a class="checkbox-select" href="#">
+										<img src="{{asset('admin/images/sidebar-no.png')}}" />
+									</a>
+								</li>
+								<li>
+									<input id="sidebar_pos"  name="sidebar_pos" type="radio" value="right" @if($layout=='right') checked="checked" @endif/>
+									<a class="checkbox-select" href="#">
+										<img src="{{asset('admin/images/sidebar-right.png')}}" />
+									</a>
+								</li>
+								<li>
+									<input id="sidebar_pos"  name="sidebar_pos" type="radio" value="left" @if($layout=='left') checked="checked" @endif/>
+									<a class="checkbox-select" href="#">
+										<img src="{{asset('admin/images/sidebar-left.png')}}" />
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					@endif
 				</div>
 				<div class="col-md-3 new-post-right">
 					@if($post->post_type!=='page')
@@ -46,7 +77,7 @@
 							@endif
 						</div>
 						<input type="hidden" name="post_image" id="post_thumb_val" value="{{$post->post_image}}">
-						<a href="#"  id="post_thumb" data-input="post_thumb_val" data-preview="post_thumb_holder"><span class="ti ti-plus"></span>@if($post->post_image) Change @else Add @endif Image</a>
+						<a href="#"  id="post_thumb" data-toggle="modal" data-target="#post_thumb_modal" data-input="post_thumb_val" data-preview="post_thumb_holder"><span class="ti ti-plus"></span>@if($post->post_image) Change @else Add @endif Image</a>
 					</div>
 					@endif
 					<input type="submit" class="btn btn-defult btn-cms btn-lg" value="Update">
@@ -55,6 +86,15 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="post_thumb_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+		  <div class="modal-body" >
+			  <iframe name="post_thumb_frame"  id="post_thumb_frame"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 @section('scripts')
 	<script src="{{'/admin/js/text_editor.js'}}"></script>

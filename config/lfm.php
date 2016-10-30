@@ -9,13 +9,13 @@ return [
     // If true, non-alphanumeric folder name will not be allowed.
     'alphanumeric_directory' => false,
 
-    'use_package_routes'    => true,
+    'use_package_routes'    => false,
 
     // For laravel 5.2, please set to ['web', 'auth']
-    'middlewares'           => ['web'],
+    'middlewares'           => ['auth'],
 
     // Add prefix for routes
-    'prefix'           => 'filemanager',
+    'prefix'           => 'admin/filemanager',
 
     // Allow multi_user mode or not.
     // If true, laravel-filemanager create private folders for each signed-in user.
@@ -27,7 +27,7 @@ return [
     'user_field'            => 'id',
 
     'shared_folder_name'    => '',
-    'thumb_folder_name'     => '',
+    'thumb_folder_name'     => 'thumbnails',
 
     'images_dir'            => 'public/media/images/',
     'images_url'            => '/media/images',

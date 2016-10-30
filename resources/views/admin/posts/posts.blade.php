@@ -18,7 +18,11 @@
 				</div>
 				@endif
 				<b>Total records {{$posts->total()}}</b>
-				<a href="{{'posts/new'}}" class="btn btn-cms btn-default pull-right"><span class="ti-plus"></span> Add New</a>
+				@if($records=='posts')
+				<a href="{{'posts/new?type=post'}}" class="btn btn-cms btn-default pull-right"><span class="ti-plus"></span> Add New</a>
+				@else
+				<a href="{{'posts/new?type=page'}}" class="btn btn-cms btn-default pull-right"><span class="ti-plus"></span> Add New</a>
+				@endif
 			</div>
 			<table class="table table-striped table-bordered">
 				<thead>

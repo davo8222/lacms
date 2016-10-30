@@ -25,7 +25,7 @@ class FrontController extends Controller {
 	 */
 	public function single_post($post_slug) {
 		$post = Post::where('slug', $post_slug)->first();
-		return view('front.single', ['post' => $post]);
+		return view('front.single', ['post' => $post])->withShortcodes();
 	}
 	
 	public function get_main_nav($menu_id){

@@ -33,7 +33,7 @@
 <div class="row">
 	<div class="col-md-4">
 		<div class="dash-container media">
-			<a href="{{url('/admin/uploads')}}">
+			<a href="{{url('/admin/library')}}">
 				<span class="ti-image"></span>
 				<h4>Media Library</h4>
 			</a>

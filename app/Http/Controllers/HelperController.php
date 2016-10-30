@@ -30,6 +30,7 @@ class HelperController extends Controller {
         return view('admin.builder.menu', ['menus' => $menus, 'pages' => $pages, 'categories' => $categories, 'primary_nav' => $primary]);
     }
 
+	
     public function new_menu(Request $request) {
         if ($request->ajax()) {
             $menu = array();
@@ -73,5 +74,9 @@ class HelperController extends Controller {
         }
         return response(['data' => $current_menu, 'as_primary' => $primary_id, 'status' => 'success']);
     }
+	
+	public function show_media(){
+		return view('admin.upload.index');
+	}
 
 }
