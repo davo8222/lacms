@@ -16,7 +16,19 @@ tinymce.PluginManager.add('cmsShortcodes', function (editor, url) {
 			{text:"Three Fourth(3/4)" , onclick: function () {editor.insertContent('[three_fourth][/three_fourth]');}},
 			{text:"Five Sixth(5/6)" , onclick: function () {editor.insertContent('[five_sixth][/five_sixth]');}},
 			{text:"Five Twelveth(5/12)" , onclick: function () {editor.insertContent('[five_twelveth][/five_twelveth]');}},
-			{text:"Seven Twelveth(7/12)" , onclick: function () {editor.insertContent('[seven_twelveth][/seven_twelveth]');}}
+			{text:"Seven Twelveth(7/12)" , onclick: function () {editor.insertContent('[seven_twelveth][/seven_twelveth]');}},
+			{text:"Full width Block" , onclick:function () {
+					// Open window
+					editor.windowManager.open({
+						width : 800,
+						height :600,
+						title: 'Full width Block',
+						file:  url+'/popups.php?item=fullbg',
+
+					});
+				},
+			
+			}
 		
 		]
 	});

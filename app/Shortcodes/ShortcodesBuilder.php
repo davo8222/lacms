@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Shortcodes;
-
+use Webwizo\Shortcodes\Facades\Shortcode;
 class ShortcodesBuilder {
 
 	public function __construct() {
@@ -76,6 +76,47 @@ class ShortcodesBuilder {
 		
 	}
 	
+	//full width background
+	function cms_grid_fullbg($shortcode, $content, $compiler, $name){
+		$type = $shortcode->type;
+		$bgcolor = $shortcode->bgcolor;
+		$bgrepeat = $shortcode->bgrepeat;
+		$bgimage=$shortcode->bgimage;
+		$custompadding = $shortcode->custompadding;
+		$notopborder = $shortcode->notopborder;
+		$nobottomborder = $shortcode->nobottomborder;
+		$scrollspeed=isset($shortcode->scrollspeed) ? $shortcode->scrollspeed : '0.6';
+		$class = $shortcode->class;
+		
+
+		$bgcolor = (isset($bgcolor) && $bgcolor!=='') ? ' background-color:'.$bgcolor.' !important;' : '';
+		$bgimage = (isset($bgimage) && $bgimage!=='') ? ' background-image:url('.$bgimage.') !important;' : '';
+		$bgrepeat = (isset($bgrepeat) && $bgrepeat!=='')? ' background-repeat:'.$bgrepeat.' !important;' : '';
+		
+		$elements = $bgcolor.$bgimage.$bgrepeat;
+		$custompadding = (isset($custompadding) && !empty($custompadding))  ? ' padding-top:'.$custompadding.'px !Important;  padding-bottom:'.$custompadding.'px !Important' : '';
+		$out = '';
+		if ($type == 'parallax'){
+			$out.= '
+			<div class="fullsize parallax-bg '.$notopborder.' '.$nobottomborder.'">
+				<div class="parallax-wrapper parallax-background '.$class.'" data-stellar-background-ratio="'.$scrollspeed.'" style="'.$elements.'">
+					<div class="parallax-wrapper-inner"  style="'.$custompadding.'">'.$content.'</div>
+				</div>
+			</div>';
+		}
+		else{
+			
+			$out.= '<div class="fullsize fullsize-background '.$notopborder.' '.$nobottomborder.'  '.$class.'" style="'.$elements.' '.$custompadding.'">';
+					$out.= $content;
+			$out.='</div>';
+	
+		}
+		
+		return $out;
+	}
+
+
+/*********************************************************/
 	
 	/*	 * ************heading************************ */
 

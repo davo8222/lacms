@@ -16,6 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
 		 <!-- CSS -->
         <link rel="stylesheet" href="{{'/css/bootstrap.min.css'}}">
+		 <link rel="stylesheet" href="{{'/css/front_styles.css'}}">
         <!--icons-->
         <link href="{{'/admin/css/fontawesome/css/font-awesome.min.css'}}" rel="stylesheet">
 

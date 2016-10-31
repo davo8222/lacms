@@ -4,10 +4,16 @@ $page = htmlentities($_GET['item']);
 <!DOCTYPE html>
 <head>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script> 
 	<script type="text/javascript" src="../plugins/tinymce/tinymce.min.js"></script>
 	<script type="text/javascript" src="tinymce_popup.js"></script>
-
+	<script type="text/javascript" src="uploader.js"></script>
+	<script type="text/javascript" src="jscolor.min.js"></script>
+	<script type="text/javascript" src="../js/colorpicker.js"></script>
+	
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
 	<link rel='stylesheet' href='shortcode.css' type='text/css' media='all' />
+	<link rel='stylesheet' href='../css/colorpicker.css' type='text/css' media='all' />
 	<?php if ($page == 'tblock') {?>
 	<!--/*************************************/ -->
 	<script type="text/javascript">
@@ -22,7 +28,7 @@ $page = htmlentities($_GET['item']);
             var Title=jQuery('#tblockTitle').val();
 			var Position=jQuery('#pos').val();
             var addclass=jQuery('#class').val();
-            var output='[tblock ';
+            var output='[heading ';
             if(addclass){
                 output+='class="'+addclass+'" ';
 			}
@@ -32,7 +38,7 @@ $page = htmlentities($_GET['item']);
 			if(Position){
                 output+=' pos="'+Position+'"';
             }
-            output+=']'+Title+'[/tblock]';
+            output+=']'+Title+'[/heading]';
             tinyMCEPopup.execCommand('mceReplaceContent', false, output);
             tinyMCEPopup.close();
         }
@@ -181,7 +187,159 @@ $page = htmlentities($_GET['item']);
 		</form>
 		<div class="mce-foot"><a class="add" href="javascript:list.insert(list.e)">Insert</a></div>
 		<!--/*************************************/ -->
+		<!--/*************************************/ -->
+<?php } elseif( $page == 'fullbg' ){
+?>
+	<script type="text/javascript">
+		var fullbg = {
+			e: '',
+			init: function(e) {
+				fullbg.e = e;
+				tinyMCEPopup.resizeToInnerSize();
+			},
+			insert: function createGalleryShortcode(e) {
+				var bgcolor=jQuery('#ProgressCustomColor').val();
+				var bgimage=jQuery('#bgimage-img').val();
+				var bgrepeat=jQuery('#bgrepeat').val();
+				var custompadding=jQuery('#custompadding').val();
+				var scrollspeed=jQuery('#scrollspeed').val();    
+				var type=jQuery('#fullbgtype').val();	
+				var addclass=jQuery('#class').val();
+                                
+				var output = '[fullbg';
+				
+				if(type){
+					output+=' type="'+type+'"';
+				}
+				
+				if(scrollspeed && type == 'parallax'){
+					output+=' scrollspeed="'+scrollspeed+'"';
+				}
+				if(addclass){
+					output+=' class="'+addclass+'"';
+				}
+				if(bgcolor) {
+					output += ' bgcolor="'+bgcolor+'"';
+				}
+                if(bgimage) {
+					output += ' bgimage="'+bgimage+'"';
+				}
+                if(bgrepeat) {
+					output += ' bgrepeat="'+bgrepeat+'"';
+				}
+				
+				if(custompadding) {
+					output += ' custompadding="'+custompadding+'"';
+				}
+				var notopborder = jQuery('#notopborder:checked').val();
+				if (notopborder === undefined) notopborder = '';
+				var nobottomborder = jQuery('#nobottomborder:checked').val();
+				if (nobottomborder === undefined) nobottomborder = '';
+				
+				if(notopborder) {
+					output += ' notopborder="'+notopborder+'"';
+				}
+				if(nobottomborder) {
+					output += ' nobottomborder="'+nobottomborder+'"';
+				}
+				
+				output += '][/fullbg]';
+				tinyMCEPopup.execCommand('mceReplaceContent', false, output);
+				tinyMCEPopup.close();
+			}
+		}
+		tinyMCEPopup.onInit.add(fullbg.init, fullbg);
+
+	</script>
+	<title>Add Full Width Background(parallax)</title>
+
+</head>
+<body>
+<form id="GalleryShortcode">
+    <script> 
+    jQuery(function(){
+		jQuery("#scrollspeed-wrapper").hide();		
+		jQuery("#fullbgtype").change(function(){
+			var selected = jQuery('#fullbgtype').val();
+			if (selected == 'parallax'){
+				jQuery("#scrollspeed-wrapper").show();
+			}
+			else{
+				jQuery("#scrollspeed-wrapper").hide();
+			}
+			
+		});
+		jQuery('#upload_bgimage_button').filemanager('image');
+    });
+    </script>
+    
+	<p>
+		<label for="fullbgtype">Type:</label>
+		<select id="fullbgtype" name="fullbgtype">
+			<option value="">Regular</option>
+			<option value="parallax">Parallax</option>
+		</select>
+	</p>
+	<p id="scrollspeed-wrapper">
+		<label for="scrollspeed">Scrolling speed:</label>
+		<select id="scrollspeed" name="scrollspeed">
+			<option value="0.1">0.1</option>
+			<option value="0.2">0.2</option>
+			<option value="0.3">0.3</option>
+			<option value="0.4">0.4</option>
+			<option value="0.5">0.5</option>
+			<option value="0.6" selected="selected">0.6</option>
+			<option value="0.7">0.7</option>
+			<option value="0.8">0.8</option>
+			<option value="0.9">0.9</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+		</select>
+	</p>
+	<p>
+		<label for="upload_thumbnail_button">Background image:</label>
+		<input id="bgimage-img" class="img-path" type="text" size="56" style="direction:ltr; text-align:left" name="bgimageimg" value="" />
+		<input id="upload_bgimage_button" type="button" class="small_button" value="Upload" data-input="bgimage-img" data-toggle="modal" data-target="#media_modal"/>
+		<div class="clear"></div>
+	</p>
+	<p>
+	<label for="bgcolor">Background color:</label>
+	<input class="jscolor" style="width:80px; margin-right:5px;"  name="bgcolor" id="bgcolor" type="text" value="" />	
+	</p>
+	<p>
+		<label for="bgrepeat">Background repeat:</label>
+		<select  id="bgrepeat" name="bgrepeat">
+			<option value="repeat">Repeat</option>
+			<option value="repeat-x">Repeat-X</option>
+			<option value="repeat-y">Repeat-Y</option>
+			<option value="no-repeat">No-repeat</option>
+		</select>
+	</p>
+	<p>
+		<label for="custompadding">Custom padding:</label>
+		<input type="text" maxlength="3" style="width:50px" id="custompadding" name="custompadding" value=""/> px
+	</p>
+	<p>
+		<label>Borders :</label>
+		<input type="checkbox" name="notopborder" id="notopborder" value="notopborder" /><label class="inner-label" for="notopborder">No top border</label>
+		<input type="checkbox" name="nobottomborder" id="nobottomborder" value="nobottomborder" /><label class="inner-label" for="nobottomborder">No bottom border</label>
+	</p>
+	<p>
+		<label for="class">Extra Class</label>
+		<input id="class" name="class" type="text" value="" />
+	</p>
+</form>
+<div class="mce-foot"><a class="add" href="javascript:fullbg.insert(fullbg.e)">Insert</a></div>
+<!--/*************************************/ -->
 	<?php } ?>
 
+<div class="modal fade" id="media_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog" >
+      <div class="modal-content">
+		  <div class="modal-body" >
+			  <iframe name="post_thumb_frame"  id="post_thumb_frame"></iframe>
+        </div>
+      </div>
+    </div>
 </body>
 </html>

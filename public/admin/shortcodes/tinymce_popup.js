@@ -53,6 +53,7 @@ var tinyMCEPopup = {
 		}
 
 		// Setup local DOM
+		/*
 		self.dom = self.editor.windowManager.createInstance('tinymce.dom.DOMUtils', document, {
 			ownEvents: true,
 			proxy: tinyMCEPopup._eventProxy
@@ -64,7 +65,7 @@ var tinyMCEPopup = {
 		if (self.features.popup_css !== false) {
 			self.dom.loadCSS(self.features.popup_css || self.editor.settings.popup_css);
 		}
-
+*/
 		// Setup on init listeners
 		self.listeners = [];
 

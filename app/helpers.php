@@ -55,7 +55,7 @@ class Helpers{
 		$options=new Option();
 		$menu_id=  $options->get_option('primary_nav');
 	//	$menu=Builder::findOrFail($menu_id);
-		
+		if($menu_id){
 		$menu=DB::table('builders')->where('id', $menu_id)->get();
 		if($menu){
 			$menu=  json_decode($menu, true);
@@ -80,6 +80,7 @@ class Helpers{
 			
 		}  else {
 			echo 'create a menu';
+		}
 		}
 	}
 }

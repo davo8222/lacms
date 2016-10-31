@@ -38,6 +38,8 @@ class CustomShortcodesServiceProvider extends ServiceProvider
 		Shortcode::register('five_twelveth', 'App\Shortcodes\ShortcodesBuilder@cms_grid_five_twelveth');
 		Shortcode::register('seven_twelveth', 'App\Shortcodes\ShortcodesBuilder@cms_grid_five_seven_twelveth');
 		
+		
+		Shortcode::register('fullbg', 'App\Shortcodes\ShortcodesBuilder@cms_grid_fullbg');
 		//heading block
         Shortcode::register('heading', 'App\Shortcodes\ShortcodesBuilder@cms_heading');
 		//lists
