@@ -28,6 +28,7 @@ $page = htmlentities($_GET['item']);
             var Title=jQuery('#tblockTitle').val();
 			var Position=jQuery('#pos').val();
             var addclass=jQuery('#class').val();
+			var color=jQuery('#color').val();
             var output='[heading ';
             if(addclass){
                 output+='class="'+addclass+'" ';
@@ -37,6 +38,9 @@ $page = htmlentities($_GET['item']);
             }
 			if(Position){
                 output+=' pos="'+Position+'"';
+            }
+			if(color){
+                output+=' color="'+color+'"';
             }
             output+=']'+Title+'[/heading]';
             tinyMCEPopup.execCommand('mceReplaceContent', false, output);
@@ -72,6 +76,10 @@ $page = htmlentities($_GET['item']);
 			<option value="text-right">Right</option>
 		</select>
     </p>
+	<p>
+	<label for="color">Custom color:</label>
+	<input class="jscolor" style="width:80px; margin-right:5px;"  name="color" id="color" type="text" value="" />	
+	</p>
     <p>
 		<label for="class">Extra Class</label>
 		<input id="class" name="class" type="text" value="" />
@@ -198,7 +206,7 @@ $page = htmlentities($_GET['item']);
 				tinyMCEPopup.resizeToInnerSize();
 			},
 			insert: function createGalleryShortcode(e) {
-				var bgcolor=jQuery('#ProgressCustomColor').val();
+				var bgcolor=jQuery('#bgcolor').val();
 				var bgimage=jQuery('#bgimage-img').val();
 				var bgrepeat=jQuery('#bgrepeat').val();
 				var custompadding=jQuery('#custompadding').val();
@@ -330,6 +338,285 @@ $page = htmlentities($_GET['item']);
 	</p>
 </form>
 <div class="mce-foot"><a class="add" href="javascript:fullbg.insert(fullbg.e)">Insert</a></div>
+<!--/*************************************/ -->
+<?php
+} elseif( $page == 'button' ){
+ ?>
+ 	<script type="text/javascript">
+		var AddButton = {
+			e: '',
+			init: function(e) {
+				AddButton.e = e;
+				tinyMCEPopup.resizeToInnerSize();
+			},
+			insert: function createGalleryShortcode(e) {
+				var ButtonColor = jQuery('#ButtonColor').val();
+				var ButtonLink = jQuery('#ButtonLink').val();
+				var ButtonText = jQuery('#ButtonText').val();
+				var addclass=jQuery('#class').val();    
+                var icon=jQuery('#icon').val();
+				var output = '[button ';
+					
+					if(addclass){
+						output+='class="'+addclass+'" ';
+					}
+					
+					if(ButtonColor) {
+						output += 'color="'+ButtonColor+'" ';
+					}
+					if(ButtonLink) {
+						output += 'link="'+ButtonLink+'" ';
+					} 
+					
+					
+					if(icon){
+						output+=' icon="'+icon+'"';
+					}
+				output += ']'+ButtonText+'[/button]';
+				tinyMCEPopup.execCommand('mceReplaceContent', false, output);
+				tinyMCEPopup.close();
+				
+			}
+		}
+		tinyMCEPopup.onInit.add(AddButton.init, AddButton);
+
+	</script>
+	<title>Add Buttons</title>
+
+</head>
+<body>
+<form id="GalleryShortcode">
+
+	
+	<p>
+		<label for="ButtonColor">Button Color:</label>
+		<select id="ButtonColor" name="ButtonColor">
+			<option value="default">Default</option>
+			<option value="btn-primary">Primary</option>
+			<option value="btn-info">Info</option>
+			<option value="btn-success">Success</option>
+			<option value="btn-warning">Warning</option>
+			<option value="btn-danger">Danger</option>
+		</select>
+	</p>
+	<p>
+		<label for="ButtonLink">Button Link :</label>
+		<input id="ButtonLink" name="ButtonLink" type="text" value="http://" />
+		
+	</p>
+	
+	<p>
+		<label for="ButtonText">Button Text :</label>
+		<input id="ButtonText" name="ButtonText" type="text" value="" />
+	</p>
+	
+	<p>
+		<label for="icon">Icon</label>
+		<input id="icon" name="icon" type="text" value="" />
+	</p>
+	<p>
+		<label for="class">Extra Class</label>
+		<input id="class" name="class" type="text" value="" />
+	</p>
+</form>
+<div class="mce-foot"><a class="add" href="javascript:AddButton.insert(AddButton.e)">Insert</a></div>
+<!--/*************************************/ -->
+<?php }elseif ($page == 'text') {?>
+	<!--/*************************************/ -->
+	<script type="text/javascript">
+    var cms_text={
+        e:'',
+        init:function(e){
+            cms_text.e=e;
+            tinyMCEPopup.resizeToInnerSize();
+        },
+        insert:function createGalleryShortcode(e){
+            var Tcontent=jQuery('#Tcontent').val();
+			var Position=jQuery('#pos').val();
+            var addclass=jQuery('#class').val();
+			var color=jQuery('#color').val();
+            var output='[cms_text ';
+            if(addclass){
+                output+='class="'+addclass+'" ';
+			}
+			if(Position){
+                output+=' pos="'+Position+'"';
+            }
+			if(color){
+                output+=' color="'+color+'"';
+            }
+            output+=']'+Tcontent+'[/cms_text]';
+            tinyMCEPopup.execCommand('mceReplaceContent', false, output);
+            tinyMCEPopup.close();
+        }
+    }
+    tinyMCEPopup.onInit.add(cms_text.init, cms_text);
+</script>
+<title>Add Title Block</title>
+</head>
+<body>
+    <form id="GalleryShortcode">
+        
+		<p>
+		<label for="pos">Position:</label>
+		<select id="pos" name="pos">
+			<option value="text-left">Left</option>
+			<option value="text-center">Center</option>
+			<option value="text-right">Right</option>
+		</select>
+    </p>
+	<p>
+	<label for="color">Custom color:</label>
+	<input class="jscolor" style="width:80px; margin-right:5px;"  name="color" id="color" type="text" value="" />	
+	</p>
+	<p>
+            <label for="Tcontent">Content</label>
+            <textarea  id="Tcontent"></textarea>
+        </p>
+    <p>
+		<label for="class">Extra Class</label>
+		<input id="class" name="class" type="text" value="" />
+	</p>
+</form>
+<div class="mce-foot"><a class="add" href="javascript:cms_text.insert(cms_text.e)">Insert</a></div>
+		<!--/*************************************/ -->
+		<?php } elseif($page=='fblock') {?>
+    <script type="text/javascript">
+        var fblock={
+            e: '',
+            init: function(e){
+                fblock.e=e,
+                tinyMCEPopup.resizeToInnerSize();
+            },
+            insert: function createGalleryShortcode(e){
+                var Title=jQuery('#fblockTitle').val();
+                var icon=jQuery('#icon').val();
+                var Fcontent=jQuery('#fblockContent').val();
+                var addclass=jQuery('#class').val();
+				
+                var output='[fblock';
+               
+                if(addclass){
+                    output+=' class="'+addclass+'"';
+                }
+				
+				
+				if(Title){
+                    output+=' title="'+Title+'"';
+                }
+				if(icon){
+                    output+=' icon="'+icon+'"';
+                }
+				
+                output+=']'+Fcontent+'[/fblock]';
+                tinyMCEPopup.execCommand('mceReplaceContent', false, output);
+		tinyMCEPopup.close();
+            }
+        }
+        tinyMCEPopup.onInit.add(fblock.init, fblock);
+    </script>
+    <title>Insert Featured Block</title>
+</head>
+<body>
+    <form id="GalleryShortcode">
+         
+	
+	<p>
+		<label for="fblockTitle">Block Title:</label>
+		<input type="text" id="fblockTitle">
+	</p>
+	
+	
+	<p>
+		<label for="icon">Icon</label>
+		<input id="icon" name="icon" type="text" value="" />
+	</p>
+	<p class="content-wrap">
+		<label for="fblockContent">Block Content:</label>
+		<textarea id="fblockContent"  style="width:200px; height:50px"></textarea>
+		
+	</p>
+	
+	<p>
+		<label for="class">Extra Class</label>
+		<input id="class" name="class" type="text" value="" />
+		
+	</p>
+</form>
+<div class="mce-foot"><a class="add" href="javascript:fblock.insert(fblock.e)">Insert</a></div>
+<!--/*************************************/ -->
+<?php } elseif( $page == 'divider' ){
+?>
+<script type="text/javascript">
+	var divider = {
+		e: '',
+		init: function(e) {
+			divider.e = e;
+			tinyMCEPopup.resizeToInnerSize();
+		},
+		insert: function createGalleryShortcode(e) {
+			var type=jQuery('#type').val();
+			var customsize=jQuery('#customsize').val();
+			var addclass=jQuery('#class').val(); 
+			var output = '[divider ';
+				
+				if(addclass){
+					output+='class="'+addclass+'" ';
+				}
+				if(type) {
+					output += 'type="'+type+'" ';
+				}
+				
+				if(customsize) {
+					output += 'customsize="'+customsize+'" ';
+				}
+				
+			output += '/]';
+			tinyMCEPopup.execCommand('mceReplaceContent', false, output);
+			tinyMCEPopup.close();
+			
+		}
+	}
+	tinyMCEPopup.onInit.add(divider.init, divider);
+
+</script>
+<title>Add Divider</title>
+
+</head>
+<body>
+<form id="GalleryShortcode">
+    <script> 
+    jQuery(function(){ 
+	  
+		jQuery("#type").change(function(){
+			var selected = jQuery('#type').val();
+			if (selected == 'blank-spacer'){
+				jQuery("#sizewrap").show();
+			}else{
+				jQuery("#sizewrap").hide(); 
+			}
+		});
+    });
+    </script>
+	<p>
+		<label for="type">Type:</label>
+		<select  id="type" name="type">
+			<option value="blank-spacer">Blank Spacer</option>
+			<option value="line">Line</option>
+		</select>
+	</p>
+	<p id="sizewrap">
+		<label for="customsize">Custom Size:</label>
+		<input type="text" id="customsize" name="customsize" maxlength="3" style="width:50px" /> px
+	</p>
+	
+	<p>
+		<label for="class">Extra Class</label>
+		<input id="class" name="class" type="text" value="" />
+	</p>
+</form>
+<div class="mce-foot"><a class="add" href="javascript:divider.insert(divider.e)">Insert</a></div>
+
 <!--/*************************************/ -->
 	<?php } ?>
 

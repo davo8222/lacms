@@ -18,7 +18,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 	/* posts */
 	Route::get('posts', ['as' => 'allposts', 'uses' => 'PostsController@post_all']);
-	Route::get('posts/edit/{post}', 'PostsController@post_edit');
+	Route::get('posts/edit/{post}', ['as' => 'editpost', 'uses' => 'PostsController@post_edit']);
 	Route::put('posts/edit/{post}', 'PostsController@post_update');
 	Route::get('posts/new', 'PostsController@post_new');
 	Route::post('posts/new', ['as' => 'postcreate', 'uses' => 'PostsController@post_store']);

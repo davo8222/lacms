@@ -12,7 +12,8 @@
 		
 		<!-- Styles -->
 		<!-- google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,400,700" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
 		 <!-- CSS -->
         <link rel="stylesheet" href="{{'/css/bootstrap.min.css'}}">

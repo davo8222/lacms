@@ -11,6 +11,14 @@
 		@include('admin.sidebar')
 	</div>
 	<div class="col-md-8 content-wrapper">
+		<div class="info-container">
+		@if (Session::has('message'))
+				<div class="alert alert-info">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></button>
+					{{ Session::get('message') }}
+				</div>
+				@endif
+		</div>
 		<div class="row">
 			<form method="POST" action="{{url('admin/posts/edit/'.$post->id)}}" class="post-form">
 				{!! csrf_field() !!}
@@ -78,6 +86,15 @@
 						</div>
 						<input type="hidden" name="post_image" id="post_thumb_val" value="{{$post->post_image}}">
 						<a href="#"  id="post_thumb" data-toggle="modal" data-target="#post_thumb_modal" data-input="post_thumb_val" data-preview="post_thumb_holder"><span class="ti ti-plus"></span>@if($post->post_image) Change @else Add @endif Image</a>
+					</div>
+					@else
+					<div id="page_type_wrap">
+						<label for="page_type">Page Type</label>
+						<select id="page_type" name="page_type" class="form-control">
+							<option value="default" @if($page_type=='default') selected="selected" @endif>Default</option>
+							<option value="fullwidth" @if($page_type=='fullwidth') selected="selected" @endif>Full Widht page</option>
+							<option value="blog" @if($page_type=='blog') selected="selected" @endif>Blog</option>
+						</select>
 					</div>
 					@endif
 					<input type="submit" class="btn btn-defult btn-cms btn-lg" value="Update">

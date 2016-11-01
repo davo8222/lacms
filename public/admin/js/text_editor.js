@@ -12,8 +12,8 @@ var editor_config = {
 	 external_plugins: {
     'cmsShortcodes': '../../shortcodes/shortcode_buttons.js'
 	 },
-    toolbar: ["insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-			"cms_grid | cms_heading | cms_list",
+    toolbar: ["insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code",
+			"cms_grid | cms_divider | cms_heading | cms_list | cms_button | cms_text | cms_fblock",
 	],
     relative_urls: false,
     file_browser_callback : function(field_name, url, type, win) {

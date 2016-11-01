@@ -9,7 +9,6 @@
 		@include('admin.sidebar')
 	</div>
 	<div class="col-md-7 content-wrapper">
-		<div class="container">
 			<div class="info-container">
 				@if (Session::has('message'))
 				<div class="alert alert-info">
@@ -92,7 +91,6 @@
 			</table>
 			<a href="#" id="multiremove" class="error" data-token="{{ csrf_token() }}">Delete</a>
 			{{$posts->render()}}
-		</div>
 	</div>
 </div>
 

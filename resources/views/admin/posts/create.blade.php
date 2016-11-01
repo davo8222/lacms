@@ -77,6 +77,15 @@
 						<a href="#" id="post_thumb" data-toggle="modal" data-target="#post_thumb_modal" data-input="post_thumb_val" data-preview="post_thumb_holder"><span class="ti ti-plus"></span>Add Image</a>
 
 					</div>
+					@else
+					<div id="page_type_wrap">
+						<h3>Page Type</h3>
+						<select id="page_type" name="page_type" class="form-control">
+							<option value="default">Default</option>
+							<option value="fullwidth">Full Widht page</option>
+							<option value="blog">Blog</option>
+						</select>
+					</div>
 					@endif
 					<input type="submit" class="btn btn-defult btn-cms btn-lg" value="Publish">
 				</div>

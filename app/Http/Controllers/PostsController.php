@@ -72,14 +72,16 @@ class PostsController extends Controller {
 			$meta=new Helpers();
 			$layout_type=!empty($request->input('sidebar_pos')) ? $request->input('sidebar_pos') : 'full';
 			$meta->add_meta($out->id, 'page_layout', $layout_type);
-                return redirect()->route('allpages')->with('message', 'Page susccessfully added');
+			$page_type=!empty($request->input('page_type')) ? $request->input('page_type') : 'default';
+			$meta->add_meta($out->id, 'page_page_type', $page_type);
+                return redirect()->route('editpost', $out->id)->with('message', 'Page susccessfully added');
             } else {
 				if($request->input('category_id')){
 					$created_post=  Post::findOrFail($out->id);
 					$created_post->category()->sync($request->input('category_id'));
 				}
 				
-                return redirect()->route('allposts')->with('message', 'Post susccessfully added');
+                return redirect()->route('editpost', $out->id)->with('message', 'Post susccessfully added');
             }
         }
     }
@@ -94,7 +96,8 @@ class PostsController extends Controller {
         $categories = Category::all();
 		$meta=new Helpers();
 		$layout=$meta->get_meta($post_id, 'page_layout');
-        return view('admin.posts.edit', ['post' => $post, 'categories' => $categories, 'layout'=>$layout]);
+		$page_type=$meta->get_meta($post_id, 'page_type');
+        return view('admin.posts.edit', ['post' => $post, 'categories' => $categories, 'layout'=>$layout, 'page_type'=>$page_type]);
     }
 
     /**
@@ -143,12 +146,19 @@ class PostsController extends Controller {
 			}else{
 				$out=$meta->add_meta($post->id, 'page_layout', $layout_type);
 			}
+			$page_type=!empty($request->input('page_type')) ? $request->input('page_type') : 'full';
+			$getType=$meta->get_meta($post->id, 'page_type');
+			if($getType!==null){
+				$out=$meta->update_meta($post->id, 'page_type', $page_type);
+			}else{
+				$out=$meta->add_meta($post->id, 'page_type', $page_type);
+			}
 		}
 		$post->update();
         if ($request->input('post_type') == 'page') {
-            return redirect()->route('allpages')->with('message', 'Page susccessfully updated');
+            return redirect()->route('editpost', $post->id)->with('message', 'Page susccessfully updated');
         } else {
-            return redirect()->route('allposts')->with('message', 'Post susccessfully updated');
+            return redirect()->route('editpost', $post->id)->with('message', 'Post susccessfully updated');
         }
     }
 

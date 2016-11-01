@@ -7,6 +7,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\Builder;
+use App\Helpers;
 class FrontController extends Controller {
 
 	
@@ -25,7 +26,15 @@ class FrontController extends Controller {
 	 */
 	public function single_post($post_slug) {
 		$post = Post::where('slug', $post_slug)->first();
-		return view('front.single', ['post' => $post])->withShortcodes();
+		if($post->post_type=='page'){
+			$meta=new Helpers();
+			$layout=$meta->get_meta($post->id, 'page_layout');
+			$page_type=$meta->get_meta($post->id, 'page_type');
+			$args=array('post'=>$post, 'layout'=>$layout, 'page_type'=>$page_type);
+		}else{
+			$args=array('post' => $post);
+		}
+		return view('front.single', $args)->withShortcodes();
 	}
 	
 	public function get_main_nav($menu_id){
