@@ -53,5 +53,9 @@ class CustomShortcodesServiceProvider extends ServiceProvider
 		Shortcode::register('cms_text', 'App\Shortcodes\ShortcodesBuilder@cms_text');
 		//features block
 		Shortcode::register('fblock', 'App\Shortcodes\ShortcodesBuilder@cms_fblock');
+		//custom image
+		Shortcode::register('regimage', 'App\Shortcodes\ShortcodesBuilder@cms_image');
+		//custom image
+		Shortcode::register('panel', 'App\Shortcodes\ShortcodesBuilder@cms_panel');
     }
 }

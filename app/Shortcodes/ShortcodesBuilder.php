@@ -80,8 +80,14 @@ class ShortcodesBuilder {
 		$bgrepeat = $shortcode->bgrepeat;
 		$bgimage = $shortcode->bgimage;
 		$custompadding = $shortcode->custompadding;
-		$notopborder = $shortcode->notopborder;
-		$nobottomborder = $shortcode->nobottomborder;
+		$topborder = $shortcode->topborder;
+		$topbordercolor = $shortcode->topbordercolor;
+		$rightborder = $shortcode->rightborder;
+		$rightbordercolor = $shortcode->rightbordercolor;
+		$bottomborder = $shortcode->bottomborder;
+		$bottombordercolor = $shortcode->bottombordercolor;
+		$leftborder = $shortcode->leftborder;
+		$leftbordercolor = $shortcode->leftbordercolor;
 		$scrollspeed = isset($shortcode->scrollspeed) ? $shortcode->scrollspeed : '0.6';
 		$class = $shortcode->class;
 
@@ -89,20 +95,24 @@ class ShortcodesBuilder {
 		$bgcolor = (isset($bgcolor) && $bgcolor !== '') ? ' background-color:#' . $bgcolor . ' !important;' : '';
 		$bgimage = (isset($bgimage) && $bgimage !== '') ? ' background-image:url(' . $bgimage . ') !important;' : '';
 		$bgrepeat = (isset($bgrepeat) && $bgrepeat !== '') ? ' background-repeat:' . $bgrepeat . ' !important;' : '';
+		$topborder = (isset($topborder) && $topborder !== '') ? ' border-top:' . $topborder . 'px solid #'.$topbordercolor.' !important;' : '';
+		$rightborder = (isset($rightborder) && $rightborder !== '') ? ' border-right:' . $rightborder . 'px solid #'.$rightbordercolor.' !important;' : '';
+		$bottomborder = (isset($bottomborder) && $bottomborder !== '') ? ' border-bottom:' . $bottomborder . 'px solid #'.$bottombordercolor.' !important;' : '';
+		$leftborder = (isset($leftborder) && $leftborder !== '') ? ' border-left:' . $leftborder . 'px solid #'.$leftbordercolor.' !important;' : '';
 
-		$elements = $bgcolor . $bgimage . $bgrepeat;
+		$elements = $bgcolor . $bgimage . $bgrepeat.$topborder . $rightborder . $bottomborder.$leftborder;
 		$custompadding = (isset($custompadding) && !empty($custompadding)) ? ' padding-top:' . $custompadding . 'px !Important;  padding-bottom:' . $custompadding . 'px !Important' : '';
 		$out = '';
 		if ($type == 'parallax') {
 			$out.= '
-			<div class="fullsize parallax-bg ' . $notopborder . ' ' . $nobottomborder . '">
+			<div class="fullsize parallax-bg">
 				<div class="parallax-wrapper parallax-background ' . $class . '" data-stellar-background-ratio="' . $scrollspeed . '" style="' . $elements . '">
 					<div class="parallax-wrapper-inner"  style="' . $custompadding . '">' . $content . '</div>
 				</div>
 			</div>';
 		} else {
 
-			$out.= '<div class="fullsize fullsize-background ' . $notopborder . ' ' . $nobottomborder . '  ' . $class . '" style="' . $elements . ' ' . $custompadding . '">';
+			$out.= '<div class="fullsize fullsize-background   ' . $class . '" style="' . $elements . ' ' . $custompadding . '">';
 			$out.= $content;
 			$out.='</div>';
 		}
@@ -186,9 +196,10 @@ class ShortcodesBuilder {
 		$link = $shortcode->link;
 		$color = $shortcode->color;
 		$icon = $shortcode->icon;
+		$size = $shortcode->size;
 		$class = $shortcode->class;
 		$out = '';
-		$out.='<a href="' . $link . '"  class="btn  ' . $color . '  ' . $class . ' ">';
+		$out.='<a href="' . $link . '"  class="btn  ' . $color . ' '.$size.' ' . $class . ' ">';
 
 		$out.=$content;
 		if ($icon) {
@@ -204,14 +215,18 @@ class ShortcodesBuilder {
 
 	public function cms_text($shortcode, $content, $compiler, $name) {
 		$pos = $shortcode->pos;
+		$tag = $shortcode->tag;
+		$size = $shortcode->size;
 		$class = $shortcode->class;
 		$color = $shortcode->color;
 		$out = '';
 
-		$color = (isset($color) && $color !== '') ? 'style="color:#' . $color . ' !important"' : '';
-		$out.='<p class="cms_text  ' . $pos . ' ' . $class . '" ' . $color . '>';
+		$color = (isset($color) && $color !== '') ? 'color:#' . $color . ' !important; ' : '';
+		$size = (isset($size) && $size !== '') ? 'font-size:' . $size . 'px !important; ' : '';
+		$elements=($size || $color)? 'style="'.$size.$color.'"' : '';
+		$out.='<'.$tag.' class="cms_text  ' . $pos . ' ' . $class . '" ' . $elements . '>';
 		$out.=$content;
-		$out.='</p>';
+		$out.='</'.$tag.'>';
 		return $out;
 	}
 
@@ -249,5 +264,76 @@ class ShortcodesBuilder {
 		}
 		return $out;
 	}
+	
+	/*	 * *******************Single image************** */
 
+	public function cms_image($shortcode, $content) {
+		$image = $shortcode->image;
+		$alignment = $shortcode->alignment;
+		$alt = $shortcode->alt;
+		$link = $shortcode->link;
+		$leftmargin = $shortcode->leftmargin;
+		$rightmargin = $shortcode->rightmargin;
+		$topmargin = $shortcode->topmargin;
+		$bottommargin = $shortcode->topmargin;
+		$class = $shortcode->class;
+		
+		$out='';
+		$leftmargin = (isset($leftmargin) && $leftmargin !== '') ? ' margin-left:' . $leftmargin . 'px !important;' : '';
+		$rightmargin = (isset($rightmargin) && $rightmargin !== '') ? ' margin-right:' . $rightmargin . 'px !important;' : '';
+		$topmargin = (isset($topmargin) && $topmargin !== '') ? ' margin-top:' . $topmargin . 'px !important;' : '';
+		$bottommargin = (isset($bottommargin) && $bottommargin !== '') ? ' margin-bottom:' . $bottommargin . 'px !important;' : '';
+		if($leftmargin || $rightmargin || $topmargin || $bottommargin){
+			$elements ='style="'. $leftmargin . $rightmargin . $topmargin.$bottommargin.'"';
+		}else{
+			$elements='';
+		}
+		
+		if ($link) {
+			$out.='<a href="' . $link . '">';
+		}
+		$out.='<img src="' . $image . '" class="cms_image ' . $alignment . '  ' . $class . '" alt="' . $alt . '" '.$elements.'>';
+		if ($link) {
+			$out.='</a>';
+		}
+
+		return $out;
+	}
+/****************panel****************************/
+	function cms_panel($shortcode, $content) {
+		$bgcolor = $shortcode->bgcolor;
+		$bgrepeat = $shortcode->bgrepeat;
+		$bgimage = $shortcode->bgimage;
+		$custompadding = $shortcode->custompadding;
+		$topborder = $shortcode->topborder;
+		$topbordercolor = $shortcode->topbordercolor;
+		$rightborder = $shortcode->rightborder;
+		$rightbordercolor = $shortcode->rightbordercolor;
+		$bottomborder = $shortcode->bottomborder;
+		$bottombordercolor = $shortcode->bottombordercolor;
+		$leftborder = $shortcode->leftborder;
+		$leftbordercolor = $shortcode->leftbordercolor;
+		$class = $shortcode->class;
+
+
+		$bgcolor = (isset($bgcolor) && $bgcolor !== '') ? ' background-color:#' . $bgcolor . ' !important;' : '';
+		$bgimage = (isset($bgimage) && $bgimage !== '') ? ' background-image:url(' . $bgimage . ') !important;' : '';
+		$bgrepeat = (isset($bgrepeat) && $bgrepeat !== '') ? ' background-repeat:' . $bgrepeat . ' !important;' : '';
+		$topborder = (isset($topborder) && $topborder !== '') ? ' border-top:' . $topborder . 'px solid #'.$topbordercolor.' !important;' : '';
+		$rightborder = (isset($rightborder) && $rightborder !== '') ? ' border-right:' . $rightborder . 'px solid #'.$rightbordercolor.' !important;' : '';
+		$bottomborder = (isset($bottomborder) && $bottomborder !== '') ? ' border-bottom:' . $bottomborder . 'px solid #'.$bottombordercolor.' !important;' : '';
+		$leftborder = (isset($leftborder) && $leftborder !== '') ? ' border-left:' . $leftborder . 'px solid #'.$leftbordercolor.' !important;' : '';
+
+		$elements = $bgcolor . $bgimage . $bgrepeat.$topborder . $rightborder . $bottomborder.$leftborder;
+		$custompadding = (isset($custompadding) && !empty($custompadding)) ? ' padding-top:' . $custompadding . 'px !Important;  padding-bottom:' . $custompadding . 'px !Important' : '';
+		$out = '';
+
+			$out.= '<div class="cms_panel clearfix ' . $class . '" style="' . $elements . ' ' . $custompadding . '">';
+			$out.= $content;
+			$out.='</div>';
+
+		return $out;
+	}
+
+	/*	 * ****************************************************** */
 }

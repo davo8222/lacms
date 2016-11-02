@@ -123,5 +123,35 @@ tinymce.PluginManager.add('cmsShortcodes', function (editor, url) {
 			});
     },
 	});
+	
+	//features block
+	editor.addButton('cms_image', {
+		image : url+'/images/image.png',
+		tooltip : 'Custom Image',
+		onclick: function() {
+			editor.windowManager.open({
+			  title: 'Custom Image',
+			  file:  url+'/popups.php?item=regimage',
+			  width: 800,
+			  height: 600,
+				
+			});
+    },
+	});
+	
+	//features block
+	editor.addButton('cms_panel', {
+		image : url+'/images/panel.png',
+		tooltip : 'Information Block',
+		onclick: function() {
+			editor.windowManager.open({
+			  title: 'Information Block',
+			  file:  url+'/popups.php?item=panel',
+			  width: 800,
+			  height: 600,
+				
+			});
+    },
+	});
 
 });

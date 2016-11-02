@@ -246,3 +246,4 @@ a.accordion_tabs.active{ color: #000; border-bottom: 1px solid #e1e1e1;}
 	height: 100%;
 	border: none;
 }
+.borders .jscolor, #leftbordercolor{cursor: pointer; height: 25px; font-size: 1px; text-indent: -9999px;}
